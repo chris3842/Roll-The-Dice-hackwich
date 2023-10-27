@@ -23,10 +23,20 @@ struct ContentView: View {
                 .onTapGesture {
                     randomNumber = Int.random(in: 1...6)
                     withAnimation(.default) {
-                     rotation += 360
+                        rotation += 360
                     }
                 }
-                Spacer()
+            Spacer()
+        }
+    }
+    
+    func chooseRandom(times:Int) {
+        
+        if times > 0 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                randomNumber = Int.random(in: 1...6)
+                chooseRandom(times:times - 1)
+            }
         }
     }
 }
